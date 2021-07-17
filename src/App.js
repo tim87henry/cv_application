@@ -16,6 +16,9 @@ class App extends React.Component {
       education:[],
       work:[]
     };
+    
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInput = this.handleInput.bind(this);
   }
   
   handleSubmit(e) {
@@ -25,10 +28,17 @@ class App extends React.Component {
     });
   }
 
+  handleInput(target,value) {
+    this.setState({
+      [target]:value
+    });
+  }
+
   render() {
     return (
       <div className="App">
         <PersonalDetails 
+        onType={this.handleInput}
         editMode={this.state.editMode}
         name={this.state.name}
         email={this.state.email}
@@ -38,6 +48,7 @@ class App extends React.Component {
         <EducationalQual/>
         <WorkExperience/>
         <SubmitCV
+        onSubmit={this.handleSubmit}
         editMode={this.state.editMode}
         />
       </div>

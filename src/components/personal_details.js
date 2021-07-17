@@ -3,6 +3,11 @@ import React from 'react';
 class PersonalDetails extends React.Component {
     constructor(props) {
         super(props)
+        this.handleInput = this.handleInput.bind(this);
+    }
+
+    handleInput(e) {
+        this.props.onType(e.target.name,e.target.value)
     }
 
     render() {
@@ -10,13 +15,13 @@ class PersonalDetails extends React.Component {
         if(this.props.editMode===true) {
             personal_info=<p>
                 Name
-                <input type="input" value={this.props.name}></input><br/><br/>
+                <input type="input" name="name" value={this.props.name} onChange={this.handleInput}></input><br/><br/>
                 Email
-                <input type="input" value={this.props.email}></input><br/><br/>
+                <input type="input" name="email" value={this.props.email} onChange={this.handleInput}></input><br/><br/>
                 City
-                <input type="input" value={this.props.city}></input><br/><br/>
+                <input type="input" name="city" value={this.props.city} onChange={this.handleInput}></input><br/><br/>
                 County
-                <input type="input" value={this.props.country}></input><br/><br/>
+                <input type="input" name="country" value={this.props.country} onChange={this.handleInput}></input><br/><br/>
             </p>
         } else {
             personal_info=<p>
