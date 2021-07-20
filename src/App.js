@@ -45,7 +45,10 @@ class App extends React.Component {
         city={this.state.city}
         country={this.state.country}
         />
-        <EducationalQual/>
+        <EducationalQual
+        editMode={this.state.editMode}
+        education={this.state.education}
+        />
         <WorkExperience/>
         <SubmitCV
         onSubmit={this.handleSubmit}
