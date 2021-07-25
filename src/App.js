@@ -19,6 +19,8 @@ class App extends React.Component {
     
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInput = this.handleInput.bind(this);
+    this.handleEducationInput = this.handleEducationInput.bind(this);
+    this.handleWorkInput = this.handleWorkInput.bind(this);
   }
   
   handleSubmit(e) {
@@ -31,6 +33,18 @@ class App extends React.Component {
   handleInput(target,value) {
     this.setState({
       [target]:value
+    });
+  }
+
+  handleEducationInput(values) {
+    this.setState({
+      education:[...this.state.education,values]
+    });
+  }
+
+  handleWorkInput(values) {
+    this.setState({
+      work:[...this.state.work,values]
     });
   }
 
@@ -48,8 +62,13 @@ class App extends React.Component {
         <EducationalQual
         editMode={this.state.editMode}
         education={this.state.education}
+        onAdd={this.handleEducationInput}
         />
-        <WorkExperience/>
+        <WorkExperience
+        editMode={this.state.editMode}
+        work={this.state.work}
+        onAdd={this.handleWorkInput}
+        />
         <SubmitCV
         onSubmit={this.handleSubmit}
         editMode={this.state.editMode}
