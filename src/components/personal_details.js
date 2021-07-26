@@ -18,6 +18,8 @@ class PersonalDetails extends React.Component {
                 <input type="input" name="name" value={this.props.name} onChange={this.handleInput}></input><br/><br/>
                 Email
                 <input type="input" name="email" value={this.props.email} onChange={this.handleInput}></input><br/><br/>
+                Phone No
+                <input type="input" name="phone" value={this.props.phone} onChange={this.handleInput}></input><br/><br/>
                 City
                 <input type="input" name="city" value={this.props.city} onChange={this.handleInput}></input><br/><br/>
                 County

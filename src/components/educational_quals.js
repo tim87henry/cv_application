@@ -8,12 +8,15 @@ class AddDegree extends React.Component {
             new_degree: '',
             new_uni: '',
             new_start: '',
-            new_end: ''
+            new_end: '',
+            ongoing:false,
+            deleted: false
         };
         this.displayForm = this.displayForm.bind(this);
         this.onType = this.onType.bind(this);
         this.handleInput = this.handleInput.bind(this);
         this.submitForm = this.submitForm.bind(this);
+        this.handleOngoing = this.handleOngoing.bind(this);
     }
 
     displayForm() {
@@ -24,7 +27,9 @@ class AddDegree extends React.Component {
             new_degree: '',
             new_uni: '',
             new_start: '',
-            new_end: ''
+            new_end: '',
+            ongoing: false,
+            deleted: false
           });
     }
 
@@ -33,7 +38,9 @@ class AddDegree extends React.Component {
             degree: this.state.new_degree,
             uni: this.state.new_uni,
             start: this.state.new_start,
-            end: this.state.new_end
+            end: this.state.new_end,
+            ongoing: this.state.ongoing,
+            deleted: this.state.deleted
         }
         this.props.onAdd(values)
         this.displayForm()
@@ -49,6 +56,15 @@ class AddDegree extends React.Component {
         this.onType(e.target.name,e.target.value)
     }
 
+    handleOngoing(e) {
+        let new_ongoing;
+        new_ongoing = this.state.ongoing? false : true;
+        this.setState({
+            new_end: "ongoing",
+            ongoing: new_ongoing
+        });
+    }
+
     render() {
         return(
             <div>
@@ -61,9 +77,10 @@ class AddDegree extends React.Component {
                         University/School
                         <input type="input" onChange={this.handleInput} name="new_uni" value={this.state.new_uni}></input><br/><br/>
                         Year Started
-                        <input type="input" onChange={this.handleInput} name="new_start" value={this.state.new_start}></input><br/><br/>
+                        <input type="date" onChange={this.handleInput} name="new_start" value={this.state.new_start}></input><br/><br/>
                         Year Completed
-                        <input type="input" onChange={this.handleInput} name="new_end" value={this.state.new_end}></input><br/><br/>
+                        <input type="date" onChange={this.handleInput} name="new_end" value={this.state.new_end} disabled={this.state.ongoing}></input>
+                        <input type="checkbox" onChange={this.handleOngoing} name="ongoing" value={this.state.ongoing}></input>Ongoing<br/><br/>
                         <input type="button" value="Submit" onClick={this.submitForm}></input>&nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="button" value="Cancel" onClick={this.displayForm}></input><br/><br/>
                     </p>
@@ -82,18 +99,23 @@ class EducationalQual extends React.Component {
                     educational_quals.push(<p>
                         Degree {this.props.education[i].degree}<br/>
                         University/School {this.props.education[i].uni}<br/>
-                        Year Started {this.props.education[i].start}<br/>
-                        Year Completed {this.props.education[i].end}
+                        From {this.props.education[i].start}<br/>
+                        To {this.props.education[i].end}<br/>
+                        <input type="button" value="Del" onClick={this.props.onDelete("3")}></input><br/><br/>
                         </p>)
                 }
         return(
             <div>
                 <h3>Educational Qualifications</h3>
                 {educational_quals}
-                <AddDegree
-                education={this.props.education}
-                onAdd={this.props.onAdd}
-                />
+                {
+                    this.props.editMode ? (
+                        <AddDegree
+                        education={this.props.education}
+                        onAdd={this.props.onAdd}
+                        />
+                    ): null
+                }
             </div>
         );
     }

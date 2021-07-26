@@ -11,6 +11,7 @@ class App extends React.Component {
       editMode:true,
       name:'',
       email:'',
+      phone:'',
       city:'',
       country:'',
       education:[],
@@ -21,6 +22,7 @@ class App extends React.Component {
     this.handleInput = this.handleInput.bind(this);
     this.handleEducationInput = this.handleEducationInput.bind(this);
     this.handleWorkInput = this.handleWorkInput.bind(this);
+    this.handleEducationDelete = this.handleEducationDelete.bind(this);
   }
   
   handleSubmit(e) {
@@ -42,6 +44,10 @@ class App extends React.Component {
     });
   }
 
+  handleEducationDelete(index) {
+    console.log("INDEX IS "+index)
+  }
+
   handleWorkInput(values) {
     this.setState({
       work:[...this.state.work,values]
@@ -56,6 +62,7 @@ class App extends React.Component {
         editMode={this.state.editMode}
         name={this.state.name}
         email={this.state.email}
+        phone={this.state.phone}
         city={this.state.city}
         country={this.state.country}
         />
@@ -63,6 +70,7 @@ class App extends React.Component {
         editMode={this.state.editMode}
         education={this.state.education}
         onAdd={this.handleEducationInput}
+        onDelete={this.handleEducationDelete}
         />
         <WorkExperience
         editMode={this.state.editMode}

@@ -52,7 +52,7 @@ class AddWork extends React.Component {
     render() {
         return(
             <div>
-                <input type="button" value="Add" onClick={this.displayForm}></input><br/><br/>
+                <input type="button" value="Add" onClick={this.displayForm}></input><br/><br/><br/>
                 {
                     this.state.showNewForm ?
                     <p>
@@ -61,9 +61,9 @@ class AddWork extends React.Component {
                         Company
                         <input type="input" onChange={this.handleInput} name="new_company" value={this.state.new_company}></input><br/><br/>
                         From
-                        <input type="input" onChange={this.handleInput} name="new_from" value={this.state.new_from}></input><br/><br/>
+                        <input type="date" onChange={this.handleInput} name="new_from" value={this.state.new_from}></input><br/><br/>
                         To
-                        <input type="input" onChange={this.handleInput} name="new_to" value={this.state.new_to}></input><br/><br/>
+                        <input type="date" onChange={this.handleInput} name="new_to" value={this.state.new_to}></input><br/><br/>
                         <input type="button" value="Submit" onClick={this.submitForm}></input>&nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="button" value="Cancel" onClick={this.displayForm}></input><br/><br/>
                     </p>
@@ -76,6 +76,10 @@ class AddWork extends React.Component {
 
 class WorkExperience extends React.Component {
 
+    constructor(props) {
+        super(props)
+    }
+
     render() {
         let work_exp=[];
                 for (let i=0;i<this.props.work.length;i++) {
@@ -83,17 +87,22 @@ class WorkExperience extends React.Component {
                         Designation {this.props.work[i].designation}<br/>
                         Company {this.props.work[i].company}<br/>
                         From {this.props.work[i].from}<br/>
-                        To {this.props.work[i].to}
+                        To {this.props.work[i].to}<br/>
+                        <input type="button" value="Del"></input><br/><br/>
                         </p>)
                 }
         return(
             <div>
                 <h3>Work Experience</h3>
                 {work_exp}
-                <AddWork
-                work={this.props.work}
-                onAdd={this.props.onAdd}
-                />
+                {
+                    this.props.editMode? (
+                        <AddWork
+                        work={this.props.work}
+                        onAdd={this.props.onAdd}
+                        />
+                    ): null
+                }
             </div>
         );
     }
