@@ -76,10 +76,6 @@ class AddWork extends React.Component {
 
 class WorkExperience extends React.Component {
 
-    constructor(props) {
-        super(props)
-    }
-
     render() {
         let work_exp=[];
                 for (let i=0;i<this.props.work.length;i++) {

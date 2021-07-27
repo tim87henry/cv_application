@@ -29,7 +29,8 @@ class AddDegree extends React.Component {
             new_start: '',
             new_end: '',
             ongoing: false,
-            deleted: false
+            deleted: false,
+            editing: false
           });
     }
 
@@ -40,7 +41,8 @@ class AddDegree extends React.Component {
             start: this.state.new_start,
             end: this.state.new_end,
             ongoing: this.state.ongoing,
-            deleted: this.state.deleted
+            deleted: this.state.deleted,
+            editing: this.state.editing
         }
         this.props.onAdd(values)
         this.displayForm()
@@ -91,18 +93,88 @@ class AddDegree extends React.Component {
     }
 }
 
+class EditDegree extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            new_degree: this.props.degree,
+            new_uni: this.props.uni,
+            new_start: this.props.start,
+            new_end: this.props.end,
+            new_ongoing: this.props.ongoing
+        }
+        this.handleInput = this.handleInput.bind(this);
+        this.handleUpdate = this.handleUpdate.bind(this);
+    }
+
+    handleInput(e) {
+        this.setState({
+            [e.target.name]:e.target.value
+        });
+    }
+
+    handleUpdate() {
+        let values = {
+            degree: this.state.new_degree,
+            uni: this.state.new_uni,
+            start: this.state.new_start,
+            end: this.state.new_end,
+            ongoing: this.state.new_ongoing
+        };
+        this.props.onUpdate(this.props.index,values)
+    }
+
+    render() {
+        return(
+            <div>
+                <p>
+                    Degree
+                    <input type="input" onChange={this.handleInput} name="new_degree" value={this.state.new_degree}></input><br/><br/>
+                    University/School
+                    <input type="input" onChange={this.handleInput} name="new_uni" value={this.state.new_uni}></input><br/><br/>
+                    Year Started
+                    <input type="date" onChange={this.handleInput} name="new_start" value={this.state.new_start}></input><br/><br/>
+                    Year Completed
+                    <input type="date" onChange={this.handleInput} name="new_end" value={this.state.new_end} disabled={this.state.ongoing}></input>
+                    <input type="checkbox" onChange={this.handleInput} name="ongoing" value={this.state.ongoing}></input>Ongoing<br/><br/>
+                    <input type="button" value="Submit" onClick={this.handleUpdate}></input>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" value="Cancel" onClick={() => this.props.onEdit(this.props.index)}></input><br/><br/>
+                </p>
+            </div>
+        );
+    }
+}
+
 class EducationalQual extends React.Component {
 
     render() {
         let educational_quals=[];
                 for (let i=0;i<this.props.education.length;i++) {
-                    educational_quals.push(<p>
-                        Degree {this.props.education[i].degree}<br/>
-                        University/School {this.props.education[i].uni}<br/>
-                        From {this.props.education[i].start}<br/>
-                        To {this.props.education[i].end}<br/>
-                        <input type="button" value="Del" onClick={this.props.onDelete("3")}></input><br/><br/>
-                        </p>)
+                    if (!this.props.education[i].deleted) {
+                        if (this.props.education[i].editing) {
+                            educational_quals.push(<p>
+                                <EditDegree
+                                degree={this.props.education[i].degree}
+                                uni={this.props.education[i].uni}
+                                start={this.props.education[i].start}
+                                end={this.props.education[i].end}
+                                index={i}
+                                onEdit={this.props.onEdit}
+                                onUpdate={this.props.onUpdate}
+                                />
+                            </p>)
+                        } else {
+                            educational_quals.push(<p>
+                                Degree {this.props.education[i].degree}<br/>
+                                University/School {this.props.education[i].uni}<br/>
+                                From {this.props.education[i].start}<br/>
+                                To {(this.props.education[i].ongoing)? "Ongoing": this.props.education[i].end}<br/>
+                                <input type="button" value="Edit" onClick={() => this.props.onEdit(i)}></input>&nbsp;&nbsp;&nbsp;
+                                <input type="button" value="Del" onClick={() => this.props.onDelete(i)}></input><br/><br/>
+                                </p>)
+                        }
+                    }
                 }
         return(
             <div>

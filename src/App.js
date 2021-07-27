@@ -23,6 +23,8 @@ class App extends React.Component {
     this.handleEducationInput = this.handleEducationInput.bind(this);
     this.handleWorkInput = this.handleWorkInput.bind(this);
     this.handleEducationDelete = this.handleEducationDelete.bind(this);
+    this.handleEducationEdit = this.handleEducationEdit.bind(this);
+    this.handleEducationUpdate = this.handleEducationUpdate.bind(this);
   }
   
   handleSubmit(e) {
@@ -45,7 +47,32 @@ class App extends React.Component {
   }
 
   handleEducationDelete(index) {
-    console.log("INDEX IS "+index)
+    let education_copy = this.state.education;
+    education_copy[index].deleted = true;
+    this.setState({
+      education: education_copy
+    });
+  }
+
+  handleEducationEdit(index) {
+    let education_copy = this.state.education;
+    education_copy[index].editing = (education_copy[index].editing)? false : true;
+    this.setState({
+      education: education_copy
+    });
+  }
+
+  handleEducationUpdate(index,values) {
+    let education_copy = this.state.education;
+    education_copy[index].degree = values.degree;
+    education_copy[index].uni = values.uni;
+    education_copy[index].start = values.start;
+    education_copy[index].end = values.end;
+    education_copy[index].ongoing = values.ongoing;
+    education_copy[index].editing = false;
+    this.setState({
+      education: education_copy
+    });
   }
 
   handleWorkInput(values) {
@@ -71,6 +98,8 @@ class App extends React.Component {
         education={this.state.education}
         onAdd={this.handleEducationInput}
         onDelete={this.handleEducationDelete}
+        onEdit={this.handleEducationEdit}
+        onUpdate={this.handleEducationUpdate}
         />
         <WorkExperience
         editMode={this.state.editMode}
