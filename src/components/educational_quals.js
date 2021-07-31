@@ -62,7 +62,7 @@ class AddDegree extends React.Component {
         let new_ongoing;
         new_ongoing = this.state.ongoing? false : true;
         this.setState({
-            new_end: "ongoing",
+            new_end: "Ongoing",
             ongoing: new_ongoing
         });
     }
@@ -106,6 +106,7 @@ class EditDegree extends React.Component {
         }
         this.handleInput = this.handleInput.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
+        this.handleOngoing = this.handleOngoing.bind(this);
     }
 
     handleInput(e) {
@@ -125,7 +126,24 @@ class EditDegree extends React.Component {
         this.props.onUpdate(this.props.index,values)
     }
 
+    handleOngoing(e) {
+        let new_ongoing;
+        new_ongoing = this.state.new_ongoing? false : true;
+        this.setState({
+            new_end: "Ongoing",
+            new_ongoing: new_ongoing
+        });
+    }
+
     render() {
+        let check_box;
+        if(this.state.new_end === "Ongoing") {
+            console.log("HEREEE")
+            check_box = <span><input type="checkbox" onChange={this.handleOngoing} name="ongoing" value={this.state.ongoing} checked></input>Ongoing<br/><br/></span>
+        } else {
+            console.log("SORRY")
+            check_box = <span><input type="checkbox" onChange={this.handleOngoing} name="ongoing" value={this.state.ongoing}></input>Ongoing<br/><br/></span>
+        }
         return(
             <div>
                 <p>
@@ -137,7 +155,7 @@ class EditDegree extends React.Component {
                     <input type="date" onChange={this.handleInput} name="new_start" value={this.state.new_start}></input><br/><br/>
                     Year Completed
                     <input type="date" onChange={this.handleInput} name="new_end" value={this.state.new_end} disabled={this.state.ongoing}></input>
-                    <input type="checkbox" onChange={this.handleInput} name="ongoing" value={this.state.ongoing}></input>Ongoing<br/><br/>
+                    { check_box }
                     <input type="button" value="Submit" onClick={this.handleUpdate}></input>&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="button" value="Cancel" onClick={() => this.props.onEdit(this.props.index)}></input><br/><br/>
                 </p>

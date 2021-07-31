@@ -25,6 +25,9 @@ class App extends React.Component {
     this.handleEducationDelete = this.handleEducationDelete.bind(this);
     this.handleEducationEdit = this.handleEducationEdit.bind(this);
     this.handleEducationUpdate = this.handleEducationUpdate.bind(this);
+    this.handleWorkDelete = this.handleWorkDelete.bind(this);
+    this.handleWorkEdit = this.handleWorkEdit.bind(this);
+    this.handleWorkUpdate = this.handleWorkUpdate.bind(this);
   }
   
   handleSubmit(e) {
@@ -81,6 +84,35 @@ class App extends React.Component {
     });
   }
 
+  handleWorkDelete(index) {
+    let work_copy = this.state.work;
+    work_copy[index].deleted = true;
+    this.setState({
+      work: work_copy
+    });
+  }
+
+  handleWorkEdit(index) {
+    let work_copy = this.state.work;
+    work_copy[index].editing = (work_copy[index].editing)? false : true;
+    this.setState({
+      work: work_copy
+    });
+  }
+
+  handleWorkUpdate(index,values) {
+    let work_copy = this.state.work;
+    work_copy[index].designation = values.designation;
+    work_copy[index].company = values.company;
+    work_copy[index].from = values.from;
+    work_copy[index].to = values.to;
+    work_copy[index].ongoing = values.ongoing;
+    work_copy[index].editing = false;
+    this.setState({
+      work: work_copy
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -105,6 +137,9 @@ class App extends React.Component {
         editMode={this.state.editMode}
         work={this.state.work}
         onAdd={this.handleWorkInput}
+        onDelete={this.handleWorkDelete}
+        onEdit={this.handleWorkEdit}
+        onUpdate={this.handleWorkUpdate}
         />
         <SubmitCV
         onSubmit={this.handleSubmit}
