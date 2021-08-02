@@ -7,6 +7,7 @@ class AddWork extends React.Component {
             showNewForm: false,
             new_designation: '',
             new_company: '',
+            new_rnr: '',
             new_from: '',
             new_to: '',
             ongoing:false,
@@ -26,6 +27,7 @@ class AddWork extends React.Component {
             showNewForm: currentNewForm,
             new_designation: '',
             new_company: '',
+            new_rnr: '',
             new_from: '',
             new_to: '',
             ongoing: false,
@@ -38,6 +40,7 @@ class AddWork extends React.Component {
         let values={
             designation: this.state.new_designation,
             company: this.state.new_company,
+            rnr: this.state.new_rnr,
             from: this.state.new_from,
             to: this.state.new_to,
             ongoing: this.state.ongoing,
@@ -78,6 +81,8 @@ class AddWork extends React.Component {
                         <input type="input" onChange={this.handleInput} name="new_designation" value={this.state.new_designation}></input><br/><br/>
                         Company
                         <input type="input" onChange={this.handleInput} name="new_company" value={this.state.new_company}></input><br/><br/>
+                        Roles and Responsibilites
+                        <input type="textbox" onChange={this.handleInput} name="new_rnr" value={this.state.new_rnr}></input><br/><br/>
                         From
                         <input type="date" onChange={this.handleInput} name="new_from" value={this.state.new_from}></input><br/><br/>
                         To
@@ -100,6 +105,7 @@ class EditWork extends React.Component {
         this.state = {
             new_designation: this.props.designation,
             new_company: this.props.company,
+            new_rnr: this.props.rnr,
             new_from: this.props.from,
             new_to: this.props.to,
             new_ongoing: this.props.ongoing
@@ -119,6 +125,7 @@ class EditWork extends React.Component {
         let values = {
             designation: this.state.new_designation,
             company: this.state.new_company,
+            rnr: this.state.new_rnr,
             from: this.state.new_from,
             to: this.state.new_to,
             ongoing: this.state.new_ongoing
@@ -149,6 +156,8 @@ class EditWork extends React.Component {
                     <input type="input" onChange={this.handleInput} name="new_designation" value={this.state.new_designation}></input><br/><br/>
                     Company
                     <input type="input" onChange={this.handleInput} name="new_company" value={this.state.new_company}></input><br/><br/>
+                    Roles and Responsibilites
+                    <input type="textbox" onChange={this.handleInput} name="new_rnr" value={this.state.new_rnr}></input><br/><br/>
                     Year Started
                     <input type="date" onChange={this.handleInput} name="new_from" value={this.state.new_from}></input><br/><br/>
                     Year Completed
@@ -173,6 +182,7 @@ class WorkExperience extends React.Component {
                                 <EditWork
                                 designation={this.props.work[i].designation}
                                 company={this.props.work[i].company}
+                                rnr={this.props.work[i].rnr}
                                 from={this.props.work[i].from}
                                 to={this.props.work[i].to}
                                 index={i}
@@ -184,6 +194,7 @@ class WorkExperience extends React.Component {
                             work_exp.push(<p>
                                 Designation {this.props.work[i].designation}<br/>
                                 Company {this.props.work[i].company}<br/>
+                                Roles and Responsibilites {this.props.work[i].rnr}
                                 From {this.props.work[i].from}<br/>
                                 To {(this.props.work[i].ongoing)? "Ongoing": this.props.work[i].to}<br/>
                                 <input type="button" value="Edit" onClick={() => this.props.onEdit(i)}></input>&nbsp;&nbsp;&nbsp;

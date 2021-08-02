@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/personalStyles.css'
 
 class PersonalDetails extends React.Component {
     constructor(props) {
@@ -26,12 +27,25 @@ class PersonalDetails extends React.Component {
                 <input type="input" name="country" value={this.props.country} onChange={this.handleInput}></input><br/><br/>
             </p>
         } else {
-            personal_info=<p>
-                Name {this.props.name}<br/>
-                Email {this.props.email}<br/>
-                City {this.props.city}<br/>
-                Country {this.props.country}
-            </p>
+            personal_info=<div className="personalInfo">
+                <div className="userName">
+                    {this.props.name}
+                </div>
+                <div className="userInfo">
+                    <span className="section1">
+                        <ul className="userInfoList">
+                            <li><b>Phone</b> {this.props.phone}</li>
+                            <li><b>Email</b> {this.props.email}</li>
+                        </ul>
+                    </span>
+                    <span className="section2">
+                        <ul className="userInfoList">
+                            <li><b>City</b> {this.props.city}</li>
+                            <li><b>Country</b> {this.props.country}</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         }
         return(
             <div>

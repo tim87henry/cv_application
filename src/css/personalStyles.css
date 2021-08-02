@@ -1,0 +1,13 @@
+.personalInfo {
+    background: cornsilk;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: row;
+    width: 1000px;
+}
+
+.userInfoList {
+    list-style: none;
+}

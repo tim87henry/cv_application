@@ -7,6 +7,7 @@ class AddDegree extends React.Component {
             showNewForm: false,
             new_degree: '',
             new_uni: '',
+            new_desc: '',
             new_start: '',
             new_end: '',
             ongoing:false,
@@ -26,6 +27,7 @@ class AddDegree extends React.Component {
             showNewForm: currentNewForm,
             new_degree: '',
             new_uni: '',
+            new_desc: '',
             new_start: '',
             new_end: '',
             ongoing: false,
@@ -38,6 +40,7 @@ class AddDegree extends React.Component {
         let values={
             degree: this.state.new_degree,
             uni: this.state.new_uni,
+            desc: this.state.new_desc,
             start: this.state.new_start,
             end: this.state.new_end,
             ongoing: this.state.ongoing,
@@ -78,6 +81,8 @@ class AddDegree extends React.Component {
                         <input type="input" onChange={this.handleInput} name="new_degree" value={this.state.new_degree}></input><br/><br/>
                         University/School
                         <input type="input" onChange={this.handleInput} name="new_uni" value={this.state.new_uni}></input><br/><br/>
+                        Description
+                        <textarea onChange={this.handleInput} name="new_desc" value={this.state.new_desc}></textarea><br/><br/>
                         Year Started
                         <input type="date" onChange={this.handleInput} name="new_start" value={this.state.new_start}></input><br/><br/>
                         Year Completed
@@ -100,6 +105,7 @@ class EditDegree extends React.Component {
         this.state = {
             new_degree: this.props.degree,
             new_uni: this.props.uni,
+            new_desc: this.props.desc,
             new_start: this.props.start,
             new_end: this.props.end,
             new_ongoing: this.props.ongoing
@@ -119,6 +125,7 @@ class EditDegree extends React.Component {
         let values = {
             degree: this.state.new_degree,
             uni: this.state.new_uni,
+            desc: this.state.new_desc,
             start: this.state.new_start,
             end: this.state.new_end,
             ongoing: this.state.new_ongoing
@@ -151,6 +158,8 @@ class EditDegree extends React.Component {
                     <input type="input" onChange={this.handleInput} name="new_degree" value={this.state.new_degree}></input><br/><br/>
                     University/School
                     <input type="input" onChange={this.handleInput} name="new_uni" value={this.state.new_uni}></input><br/><br/>
+                    Description
+                    <textarea onChange={this.handleInput} name="new_desc" value={this.state.new_desc}></textarea><br/><br/>
                     Year Started
                     <input type="date" onChange={this.handleInput} name="new_start" value={this.state.new_start}></input><br/><br/>
                     Year Completed
@@ -175,6 +184,7 @@ class EducationalQual extends React.Component {
                                 <EditDegree
                                 degree={this.props.education[i].degree}
                                 uni={this.props.education[i].uni}
+                                desc={this.props.education[i].desc}
                                 start={this.props.education[i].start}
                                 end={this.props.education[i].end}
                                 index={i}
@@ -186,6 +196,7 @@ class EducationalQual extends React.Component {
                             educational_quals.push(<p>
                                 Degree {this.props.education[i].degree}<br/>
                                 University/School {this.props.education[i].uni}<br/>
+                                Description {this.props.education[i].desc}<br/>
                                 From {this.props.education[i].start}<br/>
                                 To {(this.props.education[i].ongoing)? "Ongoing": this.props.education[i].end}<br/>
                                 <input type="button" value="Edit" onClick={() => this.props.onEdit(i)}></input>&nbsp;&nbsp;&nbsp;

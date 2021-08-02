@@ -69,6 +69,7 @@ class App extends React.Component {
     let education_copy = this.state.education;
     education_copy[index].degree = values.degree;
     education_copy[index].uni = values.uni;
+    education_copy[index].desc = values.desc;
     education_copy[index].start = values.start;
     education_copy[index].end = values.end;
     education_copy[index].ongoing = values.ongoing;
@@ -104,6 +105,7 @@ class App extends React.Component {
     let work_copy = this.state.work;
     work_copy[index].designation = values.designation;
     work_copy[index].company = values.company;
+    work_copy[index].rnr = values.rnr;
     work_copy[index].from = values.from;
     work_copy[index].to = values.to;
     work_copy[index].ongoing = values.ongoing;
