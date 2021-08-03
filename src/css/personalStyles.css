@@ -1,13 +1,42 @@
 .personalInfo {
-    background: cornsilk;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.userName {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 26px;
 }
 
 .userInfo {
     display: flex;
     flex-direction: row;
-    width: 1000px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.userInfoList {
-    list-style: none;
+.userInfoTable {
+    margin: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 18px;
+}
+
+.userInfoTable td {
+    padding: 3px 70px 3px 30px;
+}
+
+.userInfoTable th {
+    text-align: left;
+}
+
+.personalDataForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.personalDataForm span {
+    display: inline-block;
+}
+
+.personalDataForm label {
+    display: inline-block;
+    width: 300px;
 }
