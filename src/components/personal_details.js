@@ -64,7 +64,7 @@ class PersonalDetails extends React.Component {
         }
         return(
             <div>
-                <h3>Personal Details</h3>
+                <h3 className="sectionTitle">Personal Details</h3>
                 {personal_info}
             </div>
         );

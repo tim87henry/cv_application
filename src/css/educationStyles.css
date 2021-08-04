@@ -1,0 +1,32 @@
+.sectionTitle {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.eduButton {
+    background: white;
+    border-color: green;
+    box-shadow: 0 1px 3px 1px rgba(58, 83, 30, 0.19);
+}
+
+.eduButton::-moz-focus-inner {
+    border: 0;
+}
+
+.addEditForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.addEditForm span {
+    display: inline-block;
+}
+
+.addEditForm label {
+    display: inline-block;
+    width: 300px;
+    margin: 15px;
+}
+
+.addEditForm button {
+    width: 1000px;
+}

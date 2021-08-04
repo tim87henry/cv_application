@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/educationStyles.css'
 
 class AddDegree extends React.Component {
     constructor(props) {
@@ -72,25 +73,37 @@ class AddDegree extends React.Component {
 
     render() {
         return(
-            <div>
-                <input type="button" value="Add" onClick={this.displayForm}></input><br/><br/>
+            <div className="addEducation">
+                <input type="button" value="Add" onClick={this.displayForm} className="eduButton"></input><br/><br/>
                 {
                     this.state.showNewForm ?
-                    <p>
-                        Degree
-                        <input type="input" onChange={this.handleInput} name="new_degree" value={this.state.new_degree}></input><br/><br/>
-                        University/School
-                        <input type="input" onChange={this.handleInput} name="new_uni" value={this.state.new_uni}></input><br/><br/>
-                        Description
-                        <textarea onChange={this.handleInput} name="new_desc" value={this.state.new_desc}></textarea><br/><br/>
-                        Year Started
-                        <input type="date" onChange={this.handleInput} name="new_start" value={this.state.new_start}></input><br/><br/>
-                        Year Completed
-                        <input type="date" onChange={this.handleInput} name="new_end" value={this.state.new_end} disabled={this.state.ongoing}></input>
-                        <input type="checkbox" onChange={this.handleOngoing} name="ongoing" value={this.state.ongoing}></input>Ongoing<br/><br/>
-                        <input type="button" value="Submit" onClick={this.submitForm}></input>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="button" value="Cancel" onClick={this.displayForm}></input><br/><br/>
-                    </p>
+                    <div className="addEditForm">
+                        <span>
+                            <label>Degree</label>
+                            <input type="input" onChange={this.handleInput} name="new_degree" value={this.state.new_degree}></input>
+                        </span>
+                        <span>
+                            <label>University/School</label>
+                            <input type="input" onChange={this.handleInput} name="new_uni" value={this.state.new_uni}></input>
+                        </span>
+                        <span>
+                            <label>Description</label>
+                            <textarea onChange={this.handleInput} name="new_desc" value={this.state.new_desc}></textarea>
+                        </span>
+                        <span>
+                            <label>Started</label>
+                            <input type="date" onChange={this.handleInput} name="new_start" value={this.state.new_start}></input>
+                        </span>
+                        <span>
+                            <label>Completed</label>
+                            <input type="date" onChange={this.handleInput} name="new_end" value={this.state.new_end} disabled={this.state.ongoing}></input> &nbsp;&nbsp;
+                            <input type="checkbox" onChange={this.handleOngoing} name="ongoing" value={this.state.ongoing}></input>Ongoing<br/><br/>
+                        </span>
+                        <span>
+                            <input type="button" value="Submit" onClick={this.submitForm} className="eduButton"></input>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="button" value="Cancel" onClick={this.displayForm} className="eduButton"></input>
+                        </span>
+                    </div>
                     : null
                 }
             </div>
@@ -145,29 +158,37 @@ class EditDegree extends React.Component {
     render() {
         let check_box;
         if(this.state.new_end === "Ongoing") {
-            console.log("HEREEE")
-            check_box = <span><input type="checkbox" onChange={this.handleOngoing} name="ongoing" value={this.state.ongoing} checked></input>Ongoing<br/><br/></span>
+            check_box = <div><input type="checkbox" onChange={this.handleOngoing} name="ongoing" value={this.state.ongoing} checked></input>Ongoing<br/><br/></div>
         } else {
-            console.log("SORRY")
-            check_box = <span><input type="checkbox" onChange={this.handleOngoing} name="ongoing" value={this.state.ongoing}></input>Ongoing<br/><br/></span>
+            check_box = <div><input type="checkbox" onChange={this.handleOngoing} name="ongoing" value={this.state.ongoing}></input>Ongoing<br/><br/></div>
         }
         return(
-            <div>
-                <p>
-                    Degree
-                    <input type="input" onChange={this.handleInput} name="new_degree" value={this.state.new_degree}></input><br/><br/>
-                    University/School
-                    <input type="input" onChange={this.handleInput} name="new_uni" value={this.state.new_uni}></input><br/><br/>
-                    Description
-                    <textarea onChange={this.handleInput} name="new_desc" value={this.state.new_desc}></textarea><br/><br/>
-                    Year Started
-                    <input type="date" onChange={this.handleInput} name="new_start" value={this.state.new_start}></input><br/><br/>
-                    Year Completed
+            <div className="addEditForm">
+                <span>
+                    <label>Degree</label>
+                    <input type="input" onChange={this.handleInput} name="new_degree" value={this.state.new_degree}></input>
+                </span>
+                <span>
+                    <label>University/School</label>
+                    <input type="input" onChange={this.handleInput} name="new_uni" value={this.state.new_uni}></input>
+                </span>
+                <span>
+                    <label>Description</label>
+                    <textarea onChange={this.handleInput} name="new_desc" value={this.state.new_desc}></textarea>
+                </span>
+                <span>
+                    <label>Started</label>
+                    <input type="date" onChange={this.handleInput} name="new_start" value={this.state.new_start}></input>
+                </span>
+                <span>
+                    <label>Completed</label>
                     <input type="date" onChange={this.handleInput} name="new_end" value={this.state.new_end} disabled={this.state.ongoing}></input>
                     { check_box }
-                    <input type="button" value="Submit" onClick={this.handleUpdate}></input>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="button" value="Cancel" onClick={() => this.props.onEdit(this.props.index)}></input><br/><br/>
-                </p>
+                </span>
+                <span>
+                    <input type="button" value="Submit" onClick={this.handleUpdate} className="eduButton"></input>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" value="Cancel" onClick={() => this.props.onEdit(this.props.index)} className="eduButton"></input><br/><br/>
+                </span>
             </div>
         );
     }
@@ -199,15 +220,15 @@ class EducationalQual extends React.Component {
                                 Description {this.props.education[i].desc}<br/>
                                 From {this.props.education[i].start}<br/>
                                 To {(this.props.education[i].ongoing)? "Ongoing": this.props.education[i].end}<br/>
-                                <input type="button" value="Edit" onClick={() => this.props.onEdit(i)}></input>&nbsp;&nbsp;&nbsp;
-                                <input type="button" value="Del" onClick={() => this.props.onDelete(i)}></input><br/><br/>
+                                <input type="button" value="Edit" onClick={() => this.props.onEdit(i)} className="eduButton"></input>&nbsp;&nbsp;&nbsp;
+                                <input type="button" value="Del" onClick={() => this.props.onDelete(i)} className="eduButton"></input><br/><br/>
                                 </p>)
                         }
                     }
                 }
         return(
             <div>
-                <h3>Educational Qualifications</h3>
+                <h3 className="sectionTitle">Educational Qualifications</h3>
                 {educational_quals}
                 {
                     this.props.editMode ? (
