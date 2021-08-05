@@ -2,13 +2,13 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-.eduButton {
+.formButton {
     background: white;
     border-color: green;
     box-shadow: 0 1px 3px 1px rgba(58, 83, 30, 0.19);
 }
 
-.eduButton::-moz-focus-inner {
+.formButton::-moz-focus-inner {
     border: 0;
 }
 
@@ -29,4 +29,17 @@
 
 .addEditForm button {
     width: 1000px;
+}
+
+.infoDetails {
+    padding-left: 40px;
+}
+
+.infoDescr {
+    width: 300px;
+    padding-top: 20px;
+}
+
+.submitSection {
+    margin-top: 30px;
 }

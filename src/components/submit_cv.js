@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/formStyles.css'
 
 class SubmitCV extends React.Component {
     constructor(props) {
@@ -12,11 +13,12 @@ class SubmitCV extends React.Component {
 
     render() {
         return(
-            <div>
+            <div className="submitSection">
                 <input 
                 type="button" 
                 value="Submit CV"
                 onClick={this.handleSubmit}
+                className="formButton"
                 ></input>
             </div>
         );

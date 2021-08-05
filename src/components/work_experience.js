@@ -73,24 +73,36 @@ class AddWork extends React.Component {
     render() {
         return(
             <div>
-                <input type="button" value="Add" onClick={this.displayForm}></input><br/><br/>
+                <input type="button" value="Add" onClick={this.displayForm} className="formButton"></input><br/><br/>
                 {
                     this.state.showNewForm ?
-                    <p>
-                        Designation
-                        <input type="input" onChange={this.handleInput} name="new_designation" value={this.state.new_designation}></input><br/><br/>
-                        Company
-                        <input type="input" onChange={this.handleInput} name="new_company" value={this.state.new_company}></input><br/><br/>
-                        Roles and Responsibilites
-                        <input type="textbox" onChange={this.handleInput} name="new_rnr" value={this.state.new_rnr}></input><br/><br/>
-                        From
-                        <input type="date" onChange={this.handleInput} name="new_from" value={this.state.new_from}></input><br/><br/>
-                        To
-                        <input type="date" onChange={this.handleInput} name="new_to" value={this.state.new_to} disabled={this.state.ongoing}></input>
-                        <input type="checkbox" onChange={this.handleOngoing} name="ongoing" value={this.state.ongoing}></input>Ongoing<br/><br/>
-                        <input type="button" value="Submit" onClick={this.submitForm}></input>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="button" value="Cancel" onClick={this.displayForm}></input><br/><br/>
-                    </p>
+                    <div className="addEditForm">
+                        <span>
+                            <label>Designation</label>
+                            <input type="input" onChange={this.handleInput} name="new_designation" value={this.state.new_designation}></input>
+                        </span>
+                        <span>
+                            <label>Company</label>
+                            <input type="input" onChange={this.handleInput} name="new_company" value={this.state.new_company}></input>
+                        </span>
+                        <span>
+                            <label>Roles and Responsibilites</label>
+                            <textarea onChange={this.handleInput} name="new_rnr" value={this.state.new_rnr}></textarea>
+                        </span>
+                        <span>
+                            <label>From</label>
+                            <input type="date" onChange={this.handleInput} name="new_from" value={this.state.new_from}></input>
+                        </span>
+                        <span>
+                        <label>To</label>
+                        <input type="date" onChange={this.handleInput} name="new_to" value={this.state.new_to} disabled={this.state.ongoing}></input>&nbsp;&nbsp;
+                        <input type="checkbox" onChange={this.handleOngoing} name="ongoing" value={this.state.ongoing}></input>Ongoing
+                        </span>
+                        <span>
+                        <input type="button" value="Submit" onClick={this.submitForm} className="formButton"></input>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="button" value="Cancel" onClick={this.displayForm} className="formButton"></input><br/><br/>
+                        </span>
+                    </div>
                     : null
                 }
             </div>
@@ -145,27 +157,37 @@ class EditWork extends React.Component {
     render() {
         let check_box;
         if(this.state.new_to === "Ongoing") {
-            check_box = <span><input type="checkbox" onChange={this.handleOngoing} name="ongoing" value={this.state.ongoing} checked></input>Ongoing<br/><br/></span>
+            check_box = <span><input type="checkbox" onChange={this.handleOngoing} name="ongoing" value={this.state.ongoing} checked></input>Ongoing</span>
         } else {
-            check_box = <span><input type="checkbox" onChange={this.handleOngoing} name="ongoing" value={this.state.ongoing}></input>Ongoing<br/><br/></span>
+            check_box = <span><input type="checkbox" onChange={this.handleOngoing} name="ongoing" value={this.state.ongoing}></input>Ongoing</span>
         }
         return(
-            <div>
-                <p>
-                    Designation
-                    <input type="input" onChange={this.handleInput} name="new_designation" value={this.state.new_designation}></input><br/><br/>
-                    Company
-                    <input type="input" onChange={this.handleInput} name="new_company" value={this.state.new_company}></input><br/><br/>
-                    Roles and Responsibilites
-                    <input type="textbox" onChange={this.handleInput} name="new_rnr" value={this.state.new_rnr}></input><br/><br/>
-                    Year Started
-                    <input type="date" onChange={this.handleInput} name="new_from" value={this.state.new_from}></input><br/><br/>
-                    Year Completed
-                    <input type="date" onChange={this.handleInput} name="new_to" value={this.state.new_to} disabled={this.state.ongoing}></input>
+            <div className="addEditForm">
+                <span>
+                    <label>Designation</label>
+                    <input type="input" onChange={this.handleInput} name="new_designation" value={this.state.new_designation}></input>
+                </span>
+                <span>
+                    <label>Company</label>
+                    <input type="input" onChange={this.handleInput} name="new_company" value={this.state.new_company}></input>
+                </span>
+                <span>
+                    <label>Roles and Responsibilites</label>
+                    <textarea onChange={this.handleInput} name="new_rnr" value={this.state.new_rnr}></textarea>
+                </span>
+                <span>
+                    <label>Year Started</label>
+                    <input type="date" onChange={this.handleInput} name="new_from" value={this.state.new_from}></input>
+                </span>
+                <span>
+                    <label>Year Completed</label>
+                    <input type="date" onChange={this.handleInput} name="new_to" value={this.state.new_to} disabled={this.state.ongoing}></input>&nbsp;&nbsp;
                     { check_box }
-                    <input type="button" value="Submit" onClick={this.handleUpdate}></input>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="button" value="Cancel" onClick={() => this.props.onEdit(this.props.index)}></input><br/><br/>
-                </p>
+                </span>
+                <span>
+                    <input type="button" value="Submit" onClick={this.handleUpdate} className="formButton"></input>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" value="Cancel" onClick={() => this.props.onEdit(this.props.index)} className="formButton"></input><br/><br/>
+                </span>
             </div>
         );
     }
@@ -191,15 +213,28 @@ class WorkExperience extends React.Component {
                                 />
                             </p>)
                         } else {
-                            work_exp.push(<p>
-                                Designation {this.props.work[i].designation}<br/>
-                                Company {this.props.work[i].company}<br/>
-                                Roles and Responsibilites {this.props.work[i].rnr}
-                                From {this.props.work[i].from}<br/>
-                                To {(this.props.work[i].ongoing)? "Ongoing": this.props.work[i].to}<br/>
-                                <input type="button" value="Edit" onClick={() => this.props.onEdit(i)}></input>&nbsp;&nbsp;&nbsp;
-                                <input type="button" value="Del" onClick={() => this.props.onDelete(i)}></input><br/><br/>
-                                </p>)
+                            work_exp.push(
+                                <div className="infoSection">
+                                    <table>
+                                        <tr>
+                                            <th>{this.props.work[i].from} - {(this.props.work[i].ongoing)? "Ongoing": this.props.work[i].to}</th>
+                                            <td className="infoDetails">
+                                                <div><b>{this.props.work[i].designation}</b></div>
+                                                <div><b>{this.props.work[i].company}</b></div>
+                                                <div className="infoDescr">{this.props.work[i].rnr}</div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    {
+                                        this.props.editMode ? (
+                                            <span>
+                                                <input type="button" value="Edit" onClick={() => this.props.onEdit(i)} className="formButton"></input>&nbsp;&nbsp;&nbsp;
+                                                <input type="button" value="Del" onClick={() => this.props.onDelete(i)} className="formButton"></input><br/><br/>
+                                            </span>
+                                        ): null
+                                    }
+                                    
+                                </div>)
                         }
                     }
                 }

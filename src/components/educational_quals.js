@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/educationStyles.css'
+import '../css/formStyles.css'
 
 class AddDegree extends React.Component {
     constructor(props) {
@@ -74,7 +74,7 @@ class AddDegree extends React.Component {
     render() {
         return(
             <div className="addEducation">
-                <input type="button" value="Add" onClick={this.displayForm} className="eduButton"></input><br/><br/>
+                <input type="button" value="Add" onClick={this.displayForm} className="formButton"></input><br/><br/>
                 {
                     this.state.showNewForm ?
                     <div className="addEditForm">
@@ -100,8 +100,8 @@ class AddDegree extends React.Component {
                             <input type="checkbox" onChange={this.handleOngoing} name="ongoing" value={this.state.ongoing}></input>Ongoing<br/><br/>
                         </span>
                         <span>
-                            <input type="button" value="Submit" onClick={this.submitForm} className="eduButton"></input>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="button" value="Cancel" onClick={this.displayForm} className="eduButton"></input>
+                            <input type="button" value="Submit" onClick={this.submitForm} className="formButton"></input>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="button" value="Cancel" onClick={this.displayForm} className="formButton"></input>
                         </span>
                     </div>
                     : null
@@ -186,8 +186,8 @@ class EditDegree extends React.Component {
                     { check_box }
                 </span>
                 <span>
-                    <input type="button" value="Submit" onClick={this.handleUpdate} className="eduButton"></input>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="button" value="Cancel" onClick={() => this.props.onEdit(this.props.index)} className="eduButton"></input><br/><br/>
+                    <input type="button" value="Submit" onClick={this.handleUpdate} className="formButton"></input>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" value="Cancel" onClick={() => this.props.onEdit(this.props.index)} className="formButton"></input><br/><br/>
                 </span>
             </div>
         );
@@ -214,15 +214,28 @@ class EducationalQual extends React.Component {
                                 />
                             </p>)
                         } else {
-                            educational_quals.push(<p>
-                                Degree {this.props.education[i].degree}<br/>
-                                University/School {this.props.education[i].uni}<br/>
-                                Description {this.props.education[i].desc}<br/>
-                                From {this.props.education[i].start}<br/>
-                                To {(this.props.education[i].ongoing)? "Ongoing": this.props.education[i].end}<br/>
-                                <input type="button" value="Edit" onClick={() => this.props.onEdit(i)} className="eduButton"></input>&nbsp;&nbsp;&nbsp;
-                                <input type="button" value="Del" onClick={() => this.props.onDelete(i)} className="eduButton"></input><br/><br/>
-                                </p>)
+                            educational_quals.push(
+                                <div className="infoSection">
+                                    <table>
+                                        <tr>
+                                            <th>{this.props.education[i].start} - {(this.props.education[i].ongoing)? "Ongoing": this.props.education[i].end}</th>
+                                            <td className="infoDetails">
+                                                <div><b>{this.props.education[i].degree}</b></div>
+                                                <div><b>{this.props.education[i].uni}</b></div>
+                                                <div className="infoDescr">{this.props.education[i].desc}</div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    {
+                                        this.props.editMode ? (
+                                            <span>
+                                                <input type="button" value="Edit" onClick={() => this.props.onEdit(i)} className="formButton"></input>&nbsp;&nbsp;&nbsp;
+                                                <input type="button" value="Del" onClick={() => this.props.onDelete(i)} className="formButton"></input><br/><br/>
+                                            </span>
+                                        ): null
+                                    }
+                                </div>
+                                )
                         }
                     }
                 }
