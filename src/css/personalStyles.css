@@ -1,3 +1,9 @@
+.cv_section {
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .sectionTitle {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }

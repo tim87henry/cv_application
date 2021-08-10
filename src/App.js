@@ -3,6 +3,7 @@ import PersonalDetails from './components/personal_details';
 import EducationalQual from './components/educational_quals';
 import WorkExperience from './components/work_experience';
 import SubmitCV from "./components/submit_cv";
+import './css/personalStyles.css';
 
 class App extends React.Component {
   constructor(props){
@@ -117,7 +118,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App" className="cv_section">
         <PersonalDetails 
         onType={this.handleInput}
         editMode={this.state.editMode}

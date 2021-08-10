@@ -12,11 +12,13 @@ class SubmitCV extends React.Component {
     }
 
     render() {
+        let button_text='';
+        button_text = (this.props.editMode)? "Submit CV": "Back";
         return(
             <div className="submitSection">
                 <input 
                 type="button" 
-                value="Submit CV"
+                value={button_text}
                 onClick={this.handleSubmit}
                 className="formButton"
                 ></input>
