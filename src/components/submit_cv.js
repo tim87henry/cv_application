@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/formStyles.css'
+import '../css/personalStyles.css'
 
 class SubmitCV extends React.Component {
     constructor(props) {

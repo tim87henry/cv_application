@@ -1,6 +1,4 @@
-.sectionTitle {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
+
 
 .formButton {
     background: white;
@@ -15,6 +13,7 @@
 .addEditForm {
     display: flex;
     flex-direction: column;
+    padding: 10px;
 }
 
 .addEditForm span {

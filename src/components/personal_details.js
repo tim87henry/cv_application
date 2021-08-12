@@ -63,10 +63,10 @@ class PersonalDetails extends React.Component {
             </div>
         }
         return(
-            <div>
+            <div className="section">
                 {
                     this.props.editMode ? (
-                        <h3 className="sectionTitle">Personal Details</h3>
+                        <div className="sectionTitle">Personal Details</div>
                     ): null
                 }
                 {personal_info}

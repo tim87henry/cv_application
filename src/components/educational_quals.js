@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/formStyles.css'
+import '../css/personalStyles.css'
 
 class AddDegree extends React.Component {
     constructor(props) {
@@ -240,8 +241,8 @@ class EducationalQual extends React.Component {
                     }
                 }
         return(
-            <div>
-                <h3 className="sectionTitle">Educational Qualifications</h3>
+            <div className="section">
+                <div className="sectionTitle">Educational Qualifications</div>
                 {educational_quals}
                 {
                     this.props.editMode ? (

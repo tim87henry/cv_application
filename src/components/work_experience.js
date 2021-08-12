@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/personalStyles.css'
 
 class AddWork extends React.Component {
     constructor(props) {
@@ -239,8 +240,8 @@ class WorkExperience extends React.Component {
                     }
                 }
         return(
-            <div>
-                <h3>Work Experience</h3>
+            <div className="section">
+                <div className="sectionTitle">Work Experience</div>
                 {work_exp}
                 {
                     this.props.editMode ? (
