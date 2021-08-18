@@ -2,30 +2,24 @@ import React from 'react';
 import '../css/formStyles.css'
 import '../css/personalStyles.css'
 
-class SubmitCV extends React.Component {
-    constructor(props) {
-        super(props)
-        this.handleSubmit = this.handleSubmit.bind(this);
+const SubmitCV = (props) => {
+
+    const handleSubmit = (e) => {
+        props.onSubmit(e);
     }
 
-    handleSubmit(e) {
-        this.props.onSubmit(e);
-    }
-
-    render() {
-        let button_text='';
-        button_text = (this.props.editMode)? "Submit CV": "Back";
-        return(
-            <div className="submitSection">
-                <input 
-                type="button" 
-                value={button_text}
-                onClick={this.handleSubmit}
-                className="formButton"
-                ></input>
-            </div>
-        );
-    }
+    let button_text='';
+    button_text = (props.editMode)? "Submit CV": "Back";
+    return(
+        <div className="submitSection">
+            <input 
+            type="button" 
+            value={button_text}
+            onClick={handleSubmit}
+            className="formButton"
+            ></input>
+        </div>
+    );
 }
 
 export default SubmitCV;
