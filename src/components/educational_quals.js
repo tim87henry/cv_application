@@ -183,7 +183,6 @@ const EducationalQual = (props) => {
 
     let educational_quals=[];
     for (let i=0;i<props.education.length;i++) {
-        console.log("EDUCATION "+i+" and "+props.education[i].editing)
         if (!props.education[i].deleted) {
             if (props.education[i].editing) {
                 console.log("ACTUALLYYYYYY")

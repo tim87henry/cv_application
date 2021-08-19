@@ -15,6 +15,7 @@ const App = () => {
   const [country, setCountry] = useState('');
   const [education, setEducation] = useState([]);
   const [work, setWork] = useState([]);
+  const [rerender,setRerender] = useState(false)
   
   const handleSubmit = (e) => {
     let new_state=(editMode)?false:true;
@@ -40,14 +41,18 @@ const App = () => {
     let education_copy = education;
     education_copy[index].deleted = true;
     setEducation(education_copy)
+    let rerender_copy = rerender;
+    rerender_copy = (rerender)? false : true;
+    setRerender(rerender_copy)
   }
 
-  const handleEducationEdit = (index) => {
-    console.log("HERESSSS")
+  const HandleEducationEdit = (index) => {
     let education_copy = education;
     education_copy[index].editing = (education_copy[index].editing)? false : true;
     setEducation(education_copy)
-    console.log("IT's "+education[index].editing)
+    let rerender_copy = rerender;
+    rerender_copy = (rerender)? false : true;
+    setRerender(rerender_copy)
   }
 
   const handleEducationUpdate = (index,values) => {
@@ -60,6 +65,9 @@ const App = () => {
     education_copy[index].ongoing = values.ongoing;
     education_copy[index].editing = false;
     setEducation(education_copy)
+    let rerender_copy = rerender;
+    rerender_copy = (rerender)? false : true;
+    setRerender(rerender_copy)
   }
 
   const handleWorkInput = (values) => {
@@ -70,12 +78,18 @@ const App = () => {
     let work_copy = work;
     work_copy[index].deleted = true;
     setWork(work_copy)
+    let rerender_copy = rerender;
+    rerender_copy = (rerender)? false : true;
+    setRerender(rerender_copy)
   }
 
   const handleWorkEdit = (index) => {
     let work_copy = work;
     work_copy[index].editing = (work_copy[index].editing)? false : true;
     setWork(work_copy)
+    let rerender_copy = rerender;
+    rerender_copy = (rerender)? false : true;
+    setRerender(rerender_copy)
   }
 
   const handleWorkUpdate = (index,values) => {
@@ -88,6 +102,9 @@ const App = () => {
     work_copy[index].ongoing = values.ongoing;
     work_copy[index].editing = false;
     setWork(work_copy)
+    let rerender_copy = rerender;
+    rerender_copy = (rerender)? false : true;
+    setRerender(rerender_copy)
   }
 
   return (
@@ -106,7 +123,7 @@ const App = () => {
       education={education}
       onAdd={handleEducationInput}
       onDelete={handleEducationDelete}
-      onEdit={handleEducationEdit}
+      onEdit={HandleEducationEdit}
       onUpdate={handleEducationUpdate}
       />
       <WorkExperience
