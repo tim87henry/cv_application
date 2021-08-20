@@ -18,6 +18,18 @@ const App = () => {
   const [rerender,setRerender] = useState(false)
   
   const handleSubmit = (e) => {
+    let education_copy = education;
+    for(let i=0; i < education_copy.length;i++) {
+      education_copy[i].editing = false;
+    }
+    setEducation(education_copy)
+
+    let work_copy = work;
+    for(let i=0; i < work_copy.length;i++) {
+      work_copy[i].editing = false;
+    }
+    setWork(work_copy)
+
     let new_state=(editMode)?false:true;
     setEditMode(new_state)
   }
